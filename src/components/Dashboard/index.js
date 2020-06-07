@@ -1,13 +1,25 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import Logout from "../../components/Logout";
+import { connect } from "react-redux";
 
 class Dashboard extends Component {
-    render() {
-        return (
-            <div>
-                dashboard
-            </div>
-        );
-    }
+  render() {
+      const { authedUser } = this.props;
+    return (
+      <div>
+            <Logout
+                loginUser= {authedUser}
+                handleClick={this.handleClick} />
+        dashboard
+      </div>
+    );
+  }
 }
 
-export default Dashboard;
+function mapStateToProps({ authedUser }) {
+  return {
+    authedUser,
+  };
+}
+
+export default connect(mapStateToProps)(Dashboard);

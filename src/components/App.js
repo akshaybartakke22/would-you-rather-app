@@ -6,26 +6,27 @@ import { Route } from "react-router-dom";
 import { handleInitialData } from "../actions/shared";
 import Login from "../components/Login";
 import Dashboard from "./Dashboard";
+import Logout from './Logout';
 
 class App extends Component {
   componentDidMount() {
+    console.log('in app')
     this.props.handleInitialData();
-    console.log(this.props);
   }
   render() {
     const { notLoggedIn } = this.props;
-
     return (
       <Router>
-        <Fragment>
-          <div className="main-container">
-            {!notLoggedIn ? (
-              <Route path="/" exact component={Login} />
-            ) : (
-              <Route path="/" component={Dashboard} />
-            )}
-          </div>
-        </Fragment>
+        <div className="main-container">
+          {notLoggedIn ? (
+            <Route path="/" exact component={Login} />
+          ) : (
+            <Fragment>
+              <Route path="/" exact component={Dashboard} />
+              <Route path="/logout" component={Logout} />
+            </Fragment>
+          )}
+        </div>
       </Router>
     );
   }
@@ -33,12 +34,11 @@ class App extends Component {
 
 function mapStateToProps({ authedUser }) {
   return {
-    notLoggedIn: authedUser === null,
+    notLoggedIn: Array.isArray(authedUser),
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  console.log(dispatch);
   return {
     handleInitialData: () => {
       dispatch(handleInitialData());
