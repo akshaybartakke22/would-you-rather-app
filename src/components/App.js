@@ -6,15 +6,17 @@ import { Route } from "react-router-dom";
 import { handleInitialData } from "../actions/shared";
 import Login from "../components/Login";
 import Dashboard from "./Dashboard";
-import Logout from './Logout';
+import Logout from "./Logout";
+import AddQuestion from "./AddNewQuestion";
 
 class App extends Component {
   componentDidMount() {
-    console.log('in app')
+    console.log("in app");
     this.props.handleInitialData();
   }
   render() {
     const { notLoggedIn } = this.props;
+    console.log(notLoggedIn);
     return (
       <Router>
         <div className="main-container">
@@ -24,6 +26,7 @@ class App extends Component {
             <Fragment>
               <Route path="/" exact component={Dashboard} />
               <Route path="/logout" component={Logout} />
+              <Route path="/add-question" component={AddQuestion} />
             </Fragment>
           )}
         </div>

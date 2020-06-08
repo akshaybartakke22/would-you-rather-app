@@ -1,15 +1,13 @@
 import React, { Component } from "react";
-import Logout from "../../components/Logout";
 import { connect } from "react-redux";
+import Topnav from "../TopNavs";
 
 class Dashboard extends Component {
   render() {
-      const { authedUser } = this.props;
+    const { authedUser } = this.props;
     return (
       <div>
-            <Logout
-                loginUser= {authedUser}
-                handleClick={this.handleClick} />
+        <Topnav />
         dashboard
       </div>
     );

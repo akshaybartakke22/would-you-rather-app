@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import map from "lodash/map";
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import { Container, Row, Col } from "reactstrap";
-import { setUser } from '../../actions/authedUser'
+import { setUser } from "../../actions/authedUser";
 
 class Login extends Component {
   state = {
@@ -15,10 +15,10 @@ class Login extends Component {
   };
 
   handleSubmit = (e) => {
-      e.preventDefault();
-      if (this.state.userId) {
-        this.props.authedUser(this.state.userId);
-        this.props.history.push('/')
+    e.preventDefault();
+    if (this.state.userId) {
+      this.props.authedUser(this.state.userId);
+      this.props.history.push("/");
     } else {
       alert("Please Select  User");
     }
@@ -39,7 +39,7 @@ class Login extends Component {
               <Input type="select" value={userId} onChange={this.handleChange}>
                 <option value="">Please select User</option>
                 {map(users, (user) => (
-                  <option key={user.id} value={user.name}>
+                  <option key={user.id} value={user.id}>
                     {user.name}
                   </option>
                 ))}
